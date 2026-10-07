@@ -8,68 +8,43 @@ import java.util.Scanner;
 public class MyProject {   
     static Scanner userinput = new Scanner(System.in); 
     public static void main(String[] args) throws InterruptedException {
-    	//Create the variables that will be added to
+    	//Create the random word string builder
     	StringBuilder randomWord = new StringBuilder("");
-    	StringBuilder newRandomWord = new StringBuilder("");
     	
-    	//Create the ASCII range 
+    	//Create the ASCII range (the numbers that stand for the letters of the alphabet) 
     	int minimum = 97;
 		int maximum = 122;
 		int range = (maximum - minimum) + 1;
 		
+		//Create the loop that generates the beginning random word of 10 letters
     	for (int i = 1; i <= 10; i++) {
     		//Generate a random number that will correspond to a letter in ASCII
     		int randomNumber = (int)(Math.random()*range) + minimum;
-    		//Change the generated number between 97 and 122 to its ASCII value and append it to randomWord
+    		//Change the generated number between 97 and 122 to its ASCII value and append it to the random word variable
     		char randomLetter = (char)(randomNumber);
     		randomWord.append(randomLetter);
-    		
     	}
-    	System.out.println("Random word: " + randomWord);
     	
-    	for (int i = 1; i <= 5; i++) {
+    	//Display the random word
+    	System.out.println("Word #1 (the original word): " + randomWord);
+    	System.out.print("\n");
+    	
+    	//Create a loop that selects an index, chooses a different letter, and swaps it into the random word
+    	//Start at 2 and end at 20 to ensure that the original word changes 19 times (per the assignment instructions)
+    	for (int i = 2; i <= 20; i++) {
     		
-    		//Generate number form 0 to 9 to be the index that will be changed
+    		//Generate a number from 0 to 9 that will be the index to be adjusted
     		int randomIndex = (int)(Math.random()*10);
-    		System.out.println("Random index: " + randomIndex);
-    		
-    		//Find the letter that will be swapped
-    		char swapLetter = randomWord.charAt(randomIndex);
-    		System.out.println("Here is the letter at that index: " + swapLetter);
-    		String swapLetterString = Character.toString(swapLetter);
-    		System.out.println("Here is the swapped letter: " + swapLetterString);
     		
     		//Generate the new letter for that index
     		int randomNumber = (int)(Math.random()*range) + minimum;
     		char newRandomLetter = (char)(randomNumber);
-    		System.out.println("New letter to be added: " + newRandomLetter);
-    		
-    		
-    		//Cut the original random word into parts, replacing the index to be changed with the new value
-    		String newWordFirst = randomWord.substring(0, randomIndex);
-    		System.out.println("First word: " + newWordFirst);
-    		String newWordSecond = randomWord.substring(randomIndex + 1);
-    		System.out.println("Second word: " + newWordSecond);
-    		newRandomWord.append(newWordFirst).append(newRandomLetter).append(newWordSecond);
-    		
-    		System.out.println("The new random word: " + newRandomWord);
-    		randomWord = newRandomWord;
-    		
- 
-    		System.out.println("Now the original random word is: " + randomWord);
-    		
-    		randomWord = randomWord.replace(randomNumber, newRandomLetter, swapLetterString)
-//    		newRandomWord.delete(0, 10);
-//    		System.out.println("Here is the word emptied: " + newRandomWord);
-//    		System.out.println("The original random word: " + randomWord);
-    		
-    		
-    		//Reset the new random word
-    		
-    	}
-    		
-    		
 
+    		//Set the new character in the place of the old one and display the new word
+    		randomWord.setCharAt(randomIndex, newRandomLetter);
+            System.out.println("Word #" + i + ": " + randomWord);
+            System.out.print("\n");
+    	}
     		
     	}
     	
